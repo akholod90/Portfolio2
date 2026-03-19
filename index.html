@@ -30,21 +30,25 @@
             padding: 20px;
         }
 
-        /* Основной контейнер — больше не имитирует PDF, а тянется на всю ширину */
+        /* === Убрана имитация PDF, сделан адаптивный контейнер === */
         .page {
             width: 100%;
-            max-width: 1400px;       /* чуть шире для больших экранов */
+            max-width: 1400px;        /* комфортная ширина для больших экранов */
             margin: 0 auto 30px;
             background: var(--white);
             box-shadow: 0 20px 30px -10px rgba(0,0,0,0.1);
-            padding: 40px 40px;       /* вместо 20mm */
+            padding: 40px;            /* вместо 20mm */
             position: relative;
         }
 
         /* Адаптация для мобильных */
         @media (max-width: 700px) {
-            body { padding: 10px; }
-            .page { padding: 20px; }
+            body {
+                padding: 10px;
+            }
+            .page {
+                padding: 20px;        /* уменьшаем отступы на телефонах */
+            }
         }
 
         .header {
@@ -80,7 +84,6 @@
             text-transform: uppercase;
         }
 
-        /* Сетка для разделов */
         .main-grid {
             display: grid;
             grid-template-columns: 160px 1fr;
@@ -106,7 +109,7 @@
         }
 
         .subsection-title {
-            font-size: 24px;          /* увеличено */
+            font-size: 22px;
             font-weight: 700;
             margin: 30px 0 20px 0;
             letter-spacing: -0.5px;
@@ -125,32 +128,29 @@
         }
 
         .content-item h3 {
-            font-size: 24px;          /* увеличено */
+            font-size: 20px;
             font-weight: 700;
             margin: 0 0 5px 0;
         }
 
         .content-item .meta {
-            font-size: 16px;          /* увеличено */
+            font-size: 13px;
             color: var(--gray-text);
             margin-bottom: 15px;
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
-            font-weight: 600;         /* жирнее */
-            letter-spacing: 0.2px;
+            font-weight: 500;
         }
 
         .content-item p {
-            font-size: 16px;          /* увеличено */
+            font-size: 15px;
             line-height: 1.6;
             margin: 15px 0;
         }
 
-        /* Скриншоты — больше, без жёсткого ограничения высоты */
+        /* Убрано ограничение max-height, чтобы скриншоты не обрезались */
         .case-img {
-            width: 100%;
-            max-width: 1000px;        /* могут быть широкими, но не бесконечными */
+            max-width: 100%;
             height: auto;
             border: 1px solid var(--border-color);
             border-radius: 4px;
@@ -162,7 +162,7 @@
             background: var(--blue-light);
             padding: 12px 18px;
             font-weight: 600;
-            font-size: 15px;          /* увеличено */
+            font-size: 14px;
             border-left: 4px solid var(--blue);
             margin: 15px 0;
         }
@@ -174,7 +174,7 @@
             font-weight: 700;
             text-decoration: none;
             text-transform: uppercase;
-            font-size: 14px;          /* увеличено */
+            font-size: 13px;
             letter-spacing: 0.5px;
             border-bottom: 1px solid transparent;
             transition: border-color 0.2s;
@@ -183,11 +183,10 @@
             border-bottom-color: var(--blue);
         }
 
-        /* Сетка для описаний товаров — чуть крупнее ячейки */
         .descriptions-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 25px;
             margin: 20px 0;
         }
         .desc-item {
@@ -209,7 +208,7 @@
             background: #fafafa;
             padding: 25px;
             border-left: 5px solid var(--blue);
-            font-size: 16px;          /* увеличено */
+            font-size: 15px;
             line-height: 1.6;
             margin: 20px 0;
             border-radius: 0 8px 8px 0;
@@ -230,7 +229,6 @@
             font-weight: 500;
         }
 
-        /* печатная версия (опционально) */
         @media print {
             body { background: white; }
             .page { box-shadow: none; }
