@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -33,22 +34,17 @@
         /* === Убрана имитация PDF, сделан адаптивный контейнер === */
         .page {
             width: 100%;
-            max-width: 1400px;        /* комфортная ширина для больших экранов */
+            max-width: 1400px;
             margin: 0 auto 30px;
             background: var(--white);
             box-shadow: 0 20px 30px -10px rgba(0,0,0,0.1);
-            padding: 40px;            /* вместо 20mm */
+            padding: 40px;
             position: relative;
         }
 
-        /* Адаптация для мобильных */
         @media (max-width: 700px) {
-            body {
-                padding: 10px;
-            }
-            .page {
-                padding: 20px;        /* уменьшаем отступы на телефонах */
-            }
+            body { padding: 10px; }
+            .page { padding: 20px; }
         }
 
         .header {
@@ -148,7 +144,6 @@
             margin: 15px 0;
         }
 
-        /* Убрано ограничение max-height, чтобы скриншоты не обрезались */
         .case-img {
             max-width: 100%;
             height: auto;
@@ -156,6 +151,7 @@
             border-radius: 4px;
             margin: 15px 0;
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            cursor: pointer;  /* указывает, что можно кликнуть */
         }
 
         .case-result {
@@ -198,6 +194,7 @@
             border: 1px solid var(--border-color);
             border-radius: 4px;
             transition: transform 0.2s;
+            cursor: pointer;
         }
         .desc-item img:hover {
             transform: scale(1.02);
@@ -227,6 +224,51 @@
             flex-wrap: wrap;
             gap: 15px;
             font-weight: 500;
+        }
+
+        /* === Lightbox стили === */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s;
+        }
+        .lightbox-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .lightbox-image {
+            max-width: 90%;
+            max-height: 90%;
+            border: 3px solid white;
+            border-radius: 4px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            cursor: default;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            font-weight: 300;
+            line-height: 1;
+            user-select: none;
+            z-index: 1010;
+        }
+        .lightbox-close:hover {
+            color: var(--blue);
         }
 
         @media print {
@@ -260,7 +302,7 @@
                     </div>
                     <h3>Регулировка высоты крепления ремней безопасности</h3>
                     <p><strong>Задача:</strong> подготовить текст поста о регулировке высоты крепления ремней безопасности.</p>
-                    <img src="Пример_субару.png" alt="Скриншот поста Subaru" class="case-img">
+                    <img src="Пример_субару.png" alt="Скриншот поста Subaru" class="case-img js-lightbox">
                     <div class="case-result">📊 Результат: 182 лайка, 22 комментария, 5 репостов, 52,1 тыс. просмотров</div>
                     <a href="https://vk.com/wall-35242910_69970" target="_blank" class="case-link">Оригинал →</a>
                 </div>
@@ -271,7 +313,7 @@
                     </div>
                     <h3>Работа оборудования</h3>
                     <p><strong>Задача:</strong> подготовить текст поста с описанием работы оборудования.</p>
-                    <img src="Пример_Новосталь.png" alt="Скриншот поста Новосталь" class="case-img">
+                    <img src="Пример_Новосталь.png" alt="Скриншот поста Новосталь" class="case-img js-lightbox">
                     <div class="case-result">📊 Результат: 37 лайков, 10 репостов, 1495 просмотров</div>
                     <a href="https://t.me/Novostal_M/301" target="_blank" class="case-link">Оригинал →</a>
                 </div>
@@ -283,7 +325,7 @@
                     </div>
                     <h3>Планировочные решения через образ жизни</h3>
                     <p><strong>Задача:</strong> подготовить текст поста о планировочных решениях, продавать через образ жизни.</p>
-                    <img src="Пример_ДС.png" alt="Скриншот поста ДОНСТРОЙ" class="case-img">
+                    <img src="Пример_ДС.png" alt="Скриншот поста ДОНСТРОЙ" class="case-img js-lightbox">
                     <div class="case-result">📊 Результат: 40 лайков, 12 репостов, 10 885 просмотров</div>
                     <a href="https://t.me/Donstroymsk/5753" target="_blank" class="case-link">Оригинал →</a>
                 </div>
@@ -295,7 +337,7 @@
                     </div>
                     <h3>Призыв поддержать крауд‑проект</h3>
                     <p><strong>Задача:</strong> подготовить текст поста с призывом поддержать крауд-проект.</p>
-                    <img src="Пример_Планета.png" alt="Скриншот поста Planeta.ru" class="case-img">
+                    <img src="Пример_Планета.png" alt="Скриншот поста Planeta.ru" class="case-img js-lightbox">
                     <div class="case-result">📊 Результат: 24 лайка, 5 репостов, 1 148 просмотров</div>
                     <a href="https://t.me/planeta_ru/5235" target="_blank" class="case-link">Оригинал →</a>
                 </div>
@@ -309,14 +351,14 @@
                 <h3 class="subsection-title">Недвижимость</h3>
                 <div class="content-item">
                     <p><strong>Задача:</strong> подготовить статью о преимуществах отделки от застройщика.</p>
-                    <img src="Пример_Статья ДС.png" alt="Скриншот статьи ДОНСТРОЙ" class="case-img">
+                    <img src="Пример_Статья ДС.png" alt="Скриншот статьи ДОНСТРОЙ" class="case-img js-lightbox">
                     <a href="https://dzen.ru/a/aTlWQqHk9E12OlHs" target="_blank" class="case-link">Читать на Дзене →</a>
                 </div>
 
                 <h3 class="subsection-title">Автомобили</h3>
                 <div class="content-item">
                     <p><strong>Задача:</strong> подготовить статью о правилах проезда по склону.</p>
-                    <img src="Пример_Статья УАЗ.png" alt="Скриншот статьи УАЗ" class="case-img">
+                    <img src="Пример_Статья УАЗ.png" alt="Скриншот статьи УАЗ" class="case-img js-lightbox">
                     <a href="https://vk.com/@uazrussia-kak-ehat-poperek-sklona" target="_blank" class="case-link">Читать во ВКонтакте →</a>
                 </div>
             </div>
@@ -347,19 +389,19 @@
             <div>
                 <div class="descriptions-grid">
                     <div class="desc-item">
-                        <img src="Пример_Описание_Люмен.png" alt="Описание Люмен">
+                        <img src="Пример_Описание_Люмен.png" alt="Описание Люмен" class="js-lightbox">
                     </div>
                     <div class="desc-item">
-                        <img src="Пример_Описание_Алиса.png" alt="Описание Алиса">
+                        <img src="Пример_Описание_Алиса.png" alt="Описание Алиса" class="js-lightbox">
                     </div>
                     <div class="desc-item">
-                        <img src="Описание_Пример Гарри.png" alt="Описание Гарри">
+                        <img src="Описание_Пример Гарри.png" alt="Описание Гарри" class="js-lightbox">
                     </div>
                     <div class="desc-item">
-                        <img src="Пример_Описание Амур.png" alt="Описание Амур">
+                        <img src="Пример_Описание Амур.png" alt="Описание Амур" class="js-lightbox">
                     </div>
                     <div class="desc-item">
-                        <img src="Пример_Описание_Майя.png" alt="Описание Майя">
+                        <img src="Пример_Описание_Майя.png" alt="Описание Майя" class="js-lightbox">
                     </div>
                 </div>
             </div>
@@ -371,5 +413,54 @@
             <span>akholod90@gmail.com</span>
         </div>
     </div>
+
+    <!-- Lightbox overlay (скрыт по умолчанию) -->
+    <div class="lightbox-overlay" id="lightbox-overlay">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <img class="lightbox-image" id="lightbox-image" src="" alt="">
+    </div>
+
+    <script>
+        (function() {
+            const overlay = document.getElementById('lightbox-overlay');
+            const lightboxImg = document.getElementById('lightbox-image');
+            const closeBtn = document.getElementById('lightbox-close');
+
+            // Открытие лайтбокса
+            function openLightbox(src) {
+                lightboxImg.src = src;
+                overlay.classList.add('active');
+            }
+
+            // Закрытие лайтбокса
+            function closeLightbox() {
+                overlay.classList.remove('active');
+                lightboxImg.src = ''; // очищаем, чтобы не грузило фоново
+            }
+
+            // Обработчик клика на изображения с классом js-lightbox
+            document.querySelectorAll('.js-lightbox').forEach(img => {
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation(); // предотвращаем возможные конфликты
+                    openLightbox(img.src);
+                });
+            });
+
+            // Закрытие по клику на overlay (но не на само изображение)
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay || e.target === closeBtn) {
+                    closeLightbox();
+                }
+            });
+
+            // Закрытие по клавише Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
+```
